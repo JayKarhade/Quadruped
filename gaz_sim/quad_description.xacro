@@ -43,7 +43,15 @@
 </geometry>
 <material name = "orange"/>
 </visual>
+
+
+<inertial>
+    <mass value = "1"/>
+    <inertia ixx="0.02604167" ixy="0.0" ixz="0.0" iyy="0.088541" iyz="0.0" izx="0.0" izy="0.0" izz=".1041667"/>
+ </inertial>
+
 </link>
+
 <!--upper left limb-->
 <link name = "ulf_limb">
   <pose> 0 0 0 0 0 0</pose>
@@ -61,6 +69,12 @@
 </geometry>
 <material name = "red"/>
 </visual>
+
+<inertial>
+    <mass value= "0.25"/>
+    <inertia ixx="0.005364" ixy="0.0" ixz="0.0" iyy="0.005364" iyz="0.0" izx="0.0" izy="0.0" izz="0.0003125"/>
+ </inertial>
+
 </link>
 
 <link name = "ulf_leg">
@@ -79,6 +93,7 @@
     </geometry>
     <material name = "green" />
   </visual>
+
 </link>
 
 <link name = "ulf_paw">
@@ -97,6 +112,7 @@
     </geometry>
     <material name = "blue" />
   </visual>
+
 </link>
 <!--upper right limb-->
 <link name = "urf_limb">
@@ -115,6 +131,12 @@
 </geometry>
 <material name = "red"/>
 </visual>
+
+<inertial>
+    <mass value= "0.25"/>
+    <inertia ixx="0.005364" ixy="0.0" ixz="0.0" iyy="0.005364" iyz="0.0" izx="0.0" izy="0.0" izz="0.0003125"/>
+ </inertial>
+
 </link>
 
 <link name = "urf_leg">
@@ -170,6 +192,12 @@
 </geometry>
 <material name = "red"/>
 </visual>
+
+<inertial>
+    <mass value= "0.25"/>
+    <inertia ixx="0.005364" ixy="0.0" ixz="0.0" iyy="0.005364" iyz="0.0" izx="0.0" izy="0.0" izz="0.0003125"/>
+ </inertial>
+
 </link>
 
 <link name = "blf_leg">
@@ -225,6 +253,12 @@
 </geometry>
 <material name = "red"/>
 </visual>
+
+<inertial>
+    <mass value= "0.25"/>
+    <inertia ixx="0.005364" ixy="0.0" ixz="0.0" iyy="0.005364" iyz="0.0" izx="0.0" izy="0.0" izz="0.0003125"/>
+ </inertial>
+
 </link>
 
 <link name = "brf_leg">
