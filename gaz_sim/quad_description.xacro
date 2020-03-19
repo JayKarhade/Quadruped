@@ -82,14 +82,14 @@
 
   <collision name = "collision_ulf_leg">
     <geometry>
-      <cylinder length = "0.5" radius = "0.05"/>
+      <cylinder length = "1.0" radius = "0.05"/>
     </geometry>
   </collision>
 
   <visual>
     <origin rpy = "0 0 0" xyz = "0 0 0"/>
     <geometry>
-      <cylinder length = "0.5" radius = "0.05"/>
+      <cylinder length = "1.0" radius = "0.05"/>
     </geometry>
     <material name = "green" />
   </visual>
@@ -164,14 +164,14 @@
 
   <collision name = "collision_urf_leg">
     <geometry>
-      <cylinder length = "0.5" radius = "0.05"/>
+      <cylinder length = "1.0" radius = "0.05"/>
     </geometry>
   </collision>
 
   <visual>
     <origin rpy = "0 0 0" xyz = "0 0 0"/>
     <geometry>
-      <cylinder length = "0.5" radius = "0.05"/>
+      <cylinder length = "1.0" radius = "0.05"/>
     </geometry>
     <material name = "green" />
   </visual>
@@ -243,14 +243,14 @@
 
   <collision name = "collision_blf_leg">
     <geometry>
-      <cylinder length = "0.5" radius = "0.05"/>
+      <cylinder length = "1.0" radius = "0.05"/>
     </geometry>
   </collision>
 
   <visual>
     <origin rpy = "0 0 0" xyz = "0 0 0"/>
     <geometry>
-      <cylinder length = "0.5" radius = "0.05"/>
+      <cylinder length = "1.0" radius = "0.05"/>
     </geometry>
     <material name = "green" />
   </visual>
@@ -322,14 +322,14 @@
 
   <collision name = "collision_brf_leg">
     <geometry>
-      <cylinder length = "0.5" radius = "0.05"/>
+      <cylinder length = "1.0" radius = "0.05"/>
     </geometry>
   </collision>
 
   <visual>
     <origin rpy = "0 0 0" xyz = "0 0 0"/>
     <geometry>
-      <cylinder length = "0.5" radius = "0.05"/>
+      <cylinder length = "1.0" radius = "0.05"/>
     </geometry>
     <material name = "green" />
   </visual>
@@ -376,15 +376,15 @@
 <joint name = "ulf_1" type = "revolute">
   <parent link = "link_chassis"/>
   <child link = "ulf_limb"/>
-    <origin xyz = "0.5 0.25 0" rpy = "0 1.57 0.785"/>
-      <limit lower = "-0.785" upper = "0.785" effort = "10" velocity = "3"/>
+    <origin xyz = "0.5 0.25 -0.1" rpy = "0 1.57 0.785"/>
+      <limit lower = "-1.57" upper = "1.57" effort = "10" velocity = "3"/>
       <axis xyz = "1 0 0"/>
 </joint>
 
 <joint name = "ulf_2" type = "revolute">
   <parent link = "ulf_limb"/>
   <child link = "ulf_femur"/>
-    <origin xyz = "0 0 0.25" rpy = "0 1.57 0"/>
+    <origin xyz = "0 0 0.25" rpy = "0 2.355 0"/>
       <limit lower = "-0.785" upper = "0.785" effort = "10" velocity = "3"/>
       <axis xyz = "0 1 0"/>
 </joint>
@@ -393,7 +393,7 @@
 <joint name = "ulf_3" type = "revolute">
   <parent link = "ulf_femur"/>
   <child link = "ulf_leg"/>
-    <origin xyz = "0 0 -0.25" rpy = "0 1.57 0"/>
+    <origin xyz = "0 0 -0.25" rpy = "0 2.355 0"/>
       <limit lower = "-0.785" upper = "0.785" effort = "10" velocity = "3"/>
       <axis xyz = "0 1 0"/>
 </joint>
@@ -401,22 +401,22 @@
 <joint name = "ulf_4" type = "fixed">
   <parent link = "ulf_leg"/>
   <child link = "ulf_paw"/>
-    <origin xyz = "0 0 -0.25" rpy = "0 0 0"/>
+    <origin xyz = "0 0 -0.5" rpy = "0 0 0"/>
 </joint>
 
 <!--joints for urf-->
 <joint name = "urf_1" type = "revolute">
   <parent link = "link_chassis"/>
   <child link = "urf_limb"/>
-    <origin xyz = "0.5 -0.25 0" rpy = "0 1.57 -0.785"/>
-      <limit lower = "-0.785" upper = "0.785" effort = "10" velocity = "3"/>
+    <origin xyz = "0.5 -0.25 -0.1" rpy = "0 1.57 -0.785"/>
+      <limit lower = "-1.57" upper = "1.57" effort = "10" velocity = "3"/>
       <axis xyz = "1 0 0"/>
 </joint>
 
 <joint name = "urf_2" type = "revolute">
   <parent link = "urf_limb"/>
   <child link = "urf_femur"/>
-    <origin xyz = "0 0 0.25" rpy = "0 1.57 0"/>
+    <origin xyz = "0 0 0.25" rpy = "0 2.355 0"/>
       <limit lower = "-0.785" upper = "0.785" effort = "10" velocity = "3"/>
       <axis xyz = "0 1 0"/>
 </joint>
@@ -424,7 +424,7 @@
 <joint name = "urf_3" type = "revolute">
   <parent link = "urf_femur"/>
   <child link = "urf_leg"/>
-    <origin xyz = "0 0 -0.25" rpy = "0 1.57 0"/>
+    <origin xyz = "0 0 -0.25" rpy = "0 2.355 0"/>
       <limit lower = "-0.785" upper = "0.785" effort = "10" velocity = "3"/>
       <axis xyz = "0 1 0"/>
 </joint>
@@ -432,21 +432,21 @@
 <joint name = "urf_4" type = "fixed">
   <parent link = "urf_leg"/>
   <child link = "urf_paw"/>
-    <origin xyz = "0 0 -0.25" rpy = "0 0 0"/>
+    <origin xyz = "0 0 -0.5" rpy = "0 0 0"/>
 </joint>
 <!--joints for blf-->
 <joint name = "blf_1" type = "revolute">
   <parent link = "link_chassis"/>
   <child link = "blf_limb"/>
-    <origin xyz = "-0.5 0.25 0" rpy = "0 1.57 2.355"/>
-      <limit lower = "-0.785" upper = "0.785" effort = "10" velocity = "3"/>
+    <origin xyz = "-0.5 0.25 -0.1" rpy = "0 1.57 2.355"/>
+      <limit lower = "-1.57" upper = "1.57" effort = "10" velocity = "3"/>
       <axis xyz = "1 0 0"/>
 </joint>
 
 <joint name = "blf_2" type = "revolute">
   <parent link = "blf_limb"/>
   <child link = "blf_femur"/>
-    <origin xyz = "0 0 0.25" rpy = "0 1.57 0"/>
+    <origin xyz = "0 0 0.25" rpy = "0 2.355 0"/>
       <limit lower = "-0.785" upper = "0.785" effort = "10" velocity = "3"/>
       <axis xyz = "0 1 0"/>
 </joint>
@@ -455,7 +455,7 @@
 <joint name = "blf_3" type = "revolute">
   <parent link = "blf_femur"/>
   <child link = "blf_leg"/>
-    <origin xyz = "0 0 -0.25" rpy = "0 1.57 0"/>
+    <origin xyz = "0 0 -0.25" rpy = "0 2.355 0"/>
       <limit lower = "-0.785" upper = "0.785" effort = "10" velocity = "3"/>
       <axis xyz = "0 1 0"/>
 </joint>
@@ -463,21 +463,21 @@
 <joint name = "blf_4" type = "fixed">
   <parent link = "blf_leg"/>
   <child link = "blf_paw"/>
-    <origin xyz = "0 0 -0.25" rpy = "0 0 0"/>
+    <origin xyz = "0 0 -0.5" rpy = "0 0 0"/>
 </joint>
 <!--joints for brf-->
 <joint name = "brf_1" type = "revolute">
   <parent link = "link_chassis"/>
   <child link = "brf_limb"/>
-    <origin xyz = "-0.5 -0.25 0" rpy = "0 1.57 3.925"/>
-      <limit lower = "-0.785" upper = "0.785" effort = "10" velocity = "3"/>
+    <origin xyz = "-0.5 -0.25 -0.1" rpy = "0 1.57 3.925"/>
+      <limit lower = "-1.57" upper = "1.57" effort = "10" velocity = "3"/>
       <axis xyz = "1 0 0"/>
 </joint>
 
 <joint name = "brf_2" type = "revolute">
   <parent link = "brf_limb"/>
   <child link = "brf_femur"/>
-    <origin xyz = "0 0 0.25" rpy = "0 1.57 0"/>
+    <origin xyz = "0 0 0.25" rpy = "0 2.355 0"/>
       <limit lower = "-0.785" upper = "0.785" effort = "10" velocity = "3"/>
       <axis xyz = "0 1 0"/>
 </joint>
@@ -485,7 +485,7 @@
 <joint name = "brf_3" type = "revolute">
   <parent link = "brf_femur"/>
   <child link = "brf_leg"/>
-    <origin xyz = "0 0 -0.25" rpy = "0 1.57 0"/>
+    <origin xyz = "0 0 -0.25" rpy = "0 2.355 0"/>
       <limit lower = "-0.785" upper = "0.785" effort = "10" velocity = "3"/>
       <axis xyz = "0 1 0"/>
 </joint>
@@ -493,6 +493,6 @@
 <joint name = "brf_4" type = "fixed">
   <parent link = "brf_leg"/>
   <child link = "brf_paw"/>
-    <origin xyz = "0 0 -0.25" rpy = "0 0 0"/>
+    <origin xyz = "0 0 -0.5" rpy = "0 0 0"/>
 </joint>
 </robot>
