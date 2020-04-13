@@ -1,0 +1,88 @@
+<!--JavaScript - Move Object with Arrow Keys using JavaScript Function.-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+
+
+    <script type="text/javascript">
+        var ros = new ROSLIB.Ros({
+            url: 'ws://localhost:9090'
+        });
+
+        ros.on('connection', function() {
+            document.getElementById("status").innerHTML = "Connected";
+        });
+
+        ros.on('error', function(error) {
+            document.getElementById("status").innerHTML = "Error";
+        });
+
+        ros.on('close', function() {
+            document.getElementById("status").innerHTML = "Closed";
+        });
+
+        robot_cmd = new ROSLIB.Topic({
+            ros: ros,
+            name: 'movement_cmd',
+            messageType: 'std_msgs/String'
+        });
+
+        function publishEncoded(topic, obj) {
+            var msg = new ROSLIB.Message({
+                data: JSON.stringify(obj)
+            });
+            topic.publish(msg);
+        }
+
+        function forward() {
+            document.getElementById("message").innerHTML = "Moving forward";
+            publishEncoded(robot_cmd, "move_forward");
+        }
+
+        function backward() {
+            document.getElementById("message").innerHTML = "Moving backward";
+            publishEncoded(robot_cmd, "move_backward");
+        }
+
+        function left() {
+            document.getElementById("message").innerHTML = "Moving left";
+            publishEncoded(robot_cmd, "move_left");
+        }
+
+        function right() {
+            document.getElementById("message").innerHTML = "Moving right";
+            publishEncoded(robot_cmd, "move_right");
+        }
+
+        function getKeyAndMove(e) {
+            var key_code = e.which || e.keyCode;
+            switch (key_code) {
+                case 37: //left arrow key
+                    left();
+                    break;
+                case 38: //Up arrow key
+                    forward();
+                    break;
+                case 39: //right arrow key
+                    right();
+                    break;
+                case 40: //down arrow key
+                    backward();
+                    break;
+            }
+        }
+    </script>
+</head>
+
+<body onkeydown='getKeyAndMove(event)'>
+    <p id="message">View direction of robot</p>
+    <p>Connection status: <span id="status"></span></p>
+    <!--using img as it is mjpeg-->
+    <img width="640" height="480" src="http://localhost:8080/stream?topic=/usb_cam/image_raw"></img>
+
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<!--JavaScript - Move Object with Arrow Keys using JavaScript Function.-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+
+
+    <script type="text/javascript">
+        
+        var ros = new ROSLIB.Ros({
+            url: 'ws://localhost:9090'
+        });
+
+        ros.on('connection', function() {
+            document.getElementById("status").innerHTML = "Connected";
+        });
+
+        ros.on('error', function(error) {
+            document.getElementById("status").innerHTML = "Error";
+        });
+
+        ros.on('close', function() {
+            document.getElementById("status").innerHTML = "Closed";
+        });
+
+        var get_pose = new ROSLIB.Topic({
+            ros : ros,
+            name : '/current_pose',
+            messageType : 'geometry_msgs/PoseArray'
+        })
+
+function DisplayEncoded(obj) {
+  var msg = new ROSLIB.Message({
+    data: JSON.stringify(obj)
+  });
+  document.getElementById("current_attitude").innerHTML = msg.data;
+}
+
+get_pose.subscribe(function(m) {
+    DisplayEncoded(m.data);
+      });
+  get_pose.subscribe(function(message) {
+    console.log('Received message on ' + get_pose.name + ': ' + DisplayEncoded(message.data));
+  });
+    var pose_A = new ROSLIB.Message({
+                    position : {
+                      x : 0.5,
+                      y : 0.5,
+                      z : 0
+                    },
+                    orientation : {
+                      x : 0.0,
+                      y : 0.0,
+                      z : 0.0,
+                      w : 1.0
+                    }
+
+                  });
+    var pose_B = new ROSLIB.Message({
+                    position : {
+                      x : 1.1,
+                      y : 1.2,
+                      z : 0
+                    },
+                    orientation : {
+                      x : 0.0,
+                      y : 0.0,
+                      z : 1.0,
+                      w : 0.0
+                    }
+
+                  });
+    var pose_C = new ROSLIB.Message({
+                    position : {
+                      x : 2.1,
+                      y : 2.2,
+                      z : 0
+                    },
+                    orientation : {
+                      x : 0.0,
+                      y : 1.0,
+                      z : 0.0,
+                      w : 0.0
+                    }
+
+                  });
+    var pose_D = new ROSLIB.Message({
+                    position : {
+                      x : 3.1,
+                      y : 3.2,
+                      z : 0
+                    },
+                    orientation : {
+                      x : 0.0,
+                      y : 1.0,
+                      z : 0.0,
+                      w : 0.0
+                    }
+
+                  });
+
+var pose_array_A = new ROSLIB.Message({
+            poses : [pose_A]    
+              });
+var pose_array_B = new ROSLIB.Message({
+            poses : [pose_B]    
+              });
+var pose_array_C = new ROSLIB.Message({
+            poses : [pose_C]    
+              });
+var pose_array_D = new ROSLIB.Message({
+            poses : [pose_D]    
+              });
+
+var pose_array_topic = new ROSLIB.Topic({
+        ros : ros,
+        name : '/test_pose_array',
+        messageType : 'geometry_msgs/PoseArray'
+          });
+
+        function gotoA() {
+            document.getElementById("message").innerHTML = "Table A";
+
+            pose_array_topic.publish(pose_array_A);
+
+        }
+
+        function gotoB() {
+            document.getElementById("message").innerHTML = "Table B";
+
+            pose_array_topic.publish(pose_array_A);
+        }
+
+        function gotoC() {
+            document.getElementById("message").innerHTML = "Table C";
+
+            pose_array_topic.publish(pose_array_A);
+        }
+
+        function gotoD() {
+            document.getElementById("message").innerHTML = "Table D";
+
+            pose_array_topic.publish(pose_array_A);
+        }
+        //function stop(){
+          //  document.getElementById("message").innerHTML = "Stopping";
+            //publishEncoded(robot_cmd,"halt");
+        //}
+
+        
+    </script>
+</head>
+
+<body onkeydown='getKeyAndMove(event)'>
+    <p id="message">View direction of robot</p>
+    <p>Connection status: <span id="status"></span></p>
+    <!--using img as it is mjpeg-->
+    <img width="640" height="480" src="http://localhost:8080/stream?topic=/usb_cam/image_raw"></img>
+<button onclick= "gotoA()" type = "button">table A</button>
+<button onclick= "gotoB()" type = "button">table B</button>
+<button onclick= "gotoC()" type = "button">table C</button>
+<button onclick= "gotoD()" type = "button">table D</button>
+    <p id="current_attitude">View current_attitude of robot</p>
+</body>
+
+</html>

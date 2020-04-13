@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+
+<script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+
+<script type = "text/javascript">
+
+	var ros = new ROSLIB.Ros({
+    url : 'ws://localhost:9090'
+  });
+
+	ros.on('connection', function() {
+    document.getElementById("status").innerHTML = "Connected";
+  });
+
+    ros.on('error', function(error) {
+    document.getElementById("status").innerHTML = "Error";
+  });
+
+    ros.on('close', function() {
+    document.getElementById("status").innerHTML = "Closed";
+  });
+
+  robot_cmd = new ROSLIB.Topic({
+   	ros : ros,
+   	name : 'movement_cmd',
+   	messageType : 'std_msgs/String'
+    });
+
+function publishEncoded(topic, obj) {
+  var msg = new ROSLIB.Message({
+    data: JSON.stringify(obj)
+  });
+  topic.publish(msg);
+}
+  function forward(){
+  document.getElementById("message").innerHTML = "Moving forward";
+  publishEncoded(robot_cmd,"move_forward"); }
+
+	function backward(){
+  document.getElementById("message").innerHTML = "Moving backward";
+  publishEncoded(robot_cmd,"move_backward"); }
+
+	function left(){
+  document.getElementById("message").innerHTML = "Moving left";
+publishEncoded(robot_cmd,"move_left");   }
+
+	function right(){
+  document.getElementById("message").innerHTML = "Moving right";
+publishEncoded(robot_cmd,"move_right");   }
+
+	</script>
+</head>	
+
+<body>
+<button onclick= "forward()" type = "button">Forward</button>
+  <button onclick= "backward()" type = "button">Backward</button>
+  <button onclick= "left()" type = "button">Left</button>
+  <button onclick= "right()" type = "button">Right</button>
+  <p id="message"></p>
+   <p>Connection status: <span id="status"></span></p>
+
+  <p>A function is triggered when the button is clicked. The function outputs some text in a p element with id="message".</p>
+
+</body>  
+	
+</html>
